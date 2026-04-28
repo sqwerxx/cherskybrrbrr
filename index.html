@@ -92,7 +92,7 @@
 
         .big-title { font-size: clamp(3.5rem, 10vw, 8.5rem); line-height: 0.9; font-weight: 900; }
 
-        /* КАРТОЧКИ */
+        /* КАРТОЧКИ - ФИКС ГОРИЗОНТАЛИ */
         .glass-card {
             background: var(--glass);
             backdrop-filter: blur(15px);
@@ -101,6 +101,7 @@
             border: 1px solid rgba(216, 27, 96, 0.1);
             box-shadow: 0 25px 50px rgba(136, 14, 79, 0.1);
             text-align: center;
+            min-width: 300px; /* Минимальная ширина чтобы не сплющило */
         }
 
         .flex-row {
@@ -108,10 +109,15 @@
             gap: 40px;
             justify-content: center;
             align-items: stretch;
-            flex-wrap: wrap;
+            flex-wrap: nowrap; /* ЗАПРЕТ ПЕРЕНОСА */
+            overflow-x: auto; /* Позволяет свайпать контент если не влезает */
+            padding-bottom: 20px;
+            scrollbar-width: none; /* Скрываем полосу прокрутки для красоты */
         }
+        
+        .flex-row::-webkit-scrollbar { display: none; }
 
-        .card-item { flex: 1; min-width: 300px; }
+        .card-item { flex: 0 0 auto; width: 45%; min-width: 300px; }
 
         /* ЦЕННИК */
         .price-badge {
@@ -154,8 +160,10 @@
 
         @media (max-width: 768px) {
             section { padding: 20px; }
-            .glass-card { padding: 30px; }
-            .floating-item { display: none; } /* Убираем на мобилках для скорости */
+            .glass-card { padding: 25px; }
+            .card-item { width: 85%; } /* На мобилках карточки чуть шире для удобства */
+            .floating-item { display: block; opacity: 0.08; } /* Оставил на мобилках но чуть прозрачнее */
+            .big-title { font-size: 3.5rem; }
         }
     </style>
 </head>
@@ -201,9 +209,9 @@
                 </div>
                 <div class="card-item" data-aos="fade-left">
                     <div class="glass-card">
-                        <span class="script-font">THE LEGENG</span>
+                        <span class="script-font">THE LEGEND</span>
                         <h3 style="font-size: 3rem; margin-bottom: 20px;">ЧЕРСКИЙ</h3>
-                        <p>Главный усач. Вонючая растительность будет ликвидирована под ноль.</p>
+                        <p>Главный усач. Растительность будет ликвидирована под ноль.</p>
                     </div>
                 </div>
             </div>
@@ -243,16 +251,16 @@
         </div>
         <div class="container">
             <div class="glass-card" style="padding: 60px;" data-aos="zoom-in-up">
-                <div class="flex-row" style="align-items: center;">
-                    <div class="card-item" style="text-align: left;">
+                <div class="flex-row" style="flex-wrap: wrap; overflow: visible;">
+                    <div class="card-item" style="text-align: left; flex: 1;">
                         <h2 style="font-size: 3.5rem; margin-bottom: 20px;">БИЛЕТ В ЗАЛ</h2>
-                        <p style="font-size: 1.3rem; margin-bottom: 30px;">Количество мест в 19 кабинете ограничено. Забронируй прямо сейчас!</p>
+                        <p style="font-size: 1.3rem; margin-bottom: 30px;">Места в 19 кабинете ограничены. Забронируй сейчас!</p>
                         <div class="price-badge">
                             <span style="font-size: 4rem; font-weight: 900;">2</span>
                             <span style="font-size: 1.1rem;">РУБЛЯ</span>
                         </div>
                     </div>
-                    <div class="card-item">
+                    <div class="card-item" style="flex: 1;">
                         <div style="background: white; padding: 20px; display: inline-block; border-radius: 30px; border: 5px solid var(--pink-main);">
                             <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://t.me/cherskyandshashkibot" alt="QR BOT">
                         </div>
