@@ -2,10 +2,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200">
-    <title>ШОУ: ШАШКИ & ЧЕРСКИЙ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ШОУ: ШАШКИ & ЧЕРСКИЙ — В ЭТУ СУББОТУ</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Great+Vibes&family=Montserrat:wght@300;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -16,46 +16,42 @@
             --pink-dark: #880e4f;
             --gold: #c5a059;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.85);
+            --glass: rgba(255, 255, 255, 0.9);
         }
 
-        /* Настройка скролл-снэпа */
-        html {
-            scroll-behavior: smooth;
-            scroll-snap-type: y mandatory;
-        }
-
+        /* Убираем фиксированный скролл-снэп, чтобы скроллилось плавно и естественно */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--pink-light);
             font-family: 'Montserrat', sans-serif;
             color: #333;
-            /* Фиксируем ширину как на ПК */
-            width: 1200px; 
-            margin: 0 auto;
             overflow-x: hidden;
-        }
-
-        section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            scroll-snap-align: start;
-            position: relative;
-            padding: 60px;
-            overflow: hidden;
             width: 100%;
         }
 
-        .container {
-            width: 1100px;
-            z-index: 10;
-            margin: 0 auto;
+        /* Слайды теперь имеют автоматическую высоту */
+        section {
+            width: 100%;
+            min-height: auto; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 100px 20px; /* Большие отступы сверху и снизу для красоты */
+            background: var(--white);
+            border-bottom: 1px solid var(--pink-light);
+            overflow: hidden;
         }
 
-        /* ДЕКОР */
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* ЛЮТЕЙШИЙ ДЕКОР - теперь он внутри каждой секции */
         .decor-layer {
             position: absolute;
             top: 0;
@@ -69,58 +65,56 @@
         .floating-item {
             position: absolute;
             color: var(--pink-main);
-            opacity: 0.12;
-            animation: floatAnim 8s ease-in-out infinite;
+            opacity: 0.1;
+            animation: floatAnim 6s ease-in-out infinite;
         }
 
         @keyframes floatAnim {
-            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-            50% { transform: translateY(-40px) rotate(20deg) scale(1.1); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(15deg); }
         }
 
         /* ТИПОГРАФИКА */
         .script-font {
             font-family: 'Great Vibes', cursive;
             color: var(--pink-main);
-            font-size: 4rem;
-            margin-bottom: -15px;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            text-transform: none;
             display: block;
+            margin-bottom: -10px;
         }
 
-        h1, h2 {
+        h1, h2, h3 {
             font-family: 'Playfair Display', serif;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--pink-dark);
+            line-height: 1.1;
         }
 
-        .big-title { font-size: 8rem; line-height: 0.9; font-weight: 900; }
+        .main-title { font-size: clamp(3rem, 10vw, 7.5rem); font-weight: 900; margin: 20px 0; }
+        .section-title { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 40px; border-left: 8px solid var(--pink-main); padding-left: 20px; }
 
-        /* КАРТОЧКИ - ЖЕСТКАЯ ГОРИЗОНТАЛЬ */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border-radius: 40px;
-            padding: 50px;
-            border: 1px solid rgba(216, 27, 96, 0.1);
-            box-shadow: 0 25px 50px rgba(136, 14, 79, 0.1);
-            text-align: center;
-            height: 100%;
-        }
-
-        .flex-row {
+        /* КОМПОНОВКА (McKinsey Style) */
+        .flex-grid {
             display: flex;
             gap: 40px;
+            flex-wrap: wrap; /* На маленьких экранах карточки встанут друг под друга */
             justify-content: center;
-            align-items: stretch;
-            flex-wrap: nowrap; /* Только в ряд! */
         }
 
-        .card-item { 
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 40px;
+            border: 1px solid rgba(216, 27, 96, 0.1);
+            box-shadow: 0 20px 40px rgba(136, 14, 79, 0.05);
             flex: 1;
+            min-width: 300px;
+            text-align: center;
         }
 
-        /* ЦЕННИК */
         .price-badge {
             background: var(--pink-dark);
             color: white;
@@ -131,81 +125,92 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 0 auto;
+            margin: 30px auto;
             border: 4px solid var(--gold);
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(216, 27, 96, 0.7); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(216, 27, 96, 0.4); }
             70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(216, 27, 96, 0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(216, 27, 96, 0); }
         }
 
-        .btn-luxe {
+        .btn-tg {
             display: inline-block;
             background: linear-gradient(135deg, var(--pink-dark), var(--pink-main));
             color: white;
-            padding: 22px 60px;
+            padding: 22px 50px;
             border-radius: 100px;
             text-decoration: none;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-top: 30px;
+            margin-top: 20px;
             transition: 0.3s;
             box-shadow: 0 15px 30px rgba(136, 14, 79, 0.3);
         }
 
-        .btn-luxe:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(136, 14, 79, 0.5); }
+        .qr-wrapper {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            display: inline-block;
+            border: 4px solid var(--pink-main);
+            margin-top: 20px;
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+            section { padding: 60px 20px; }
+            .card { padding: 30px; }
+            .main-title { font-size: 3.5rem; }
+        }
     </style>
 </head>
 <body>
 
     <section>
         <div class="decor-layer">
-            <i class="fa-solid fa-scissors floating-item" style="top: 15%; left: 10%; font-size: 5rem; animation-delay: 0s;"></i>
-            <i class="fa-solid fa-gem floating-item" style="top: 20%; right: 15%; font-size: 3rem; animation-delay: 2s;"></i>
+            <i class="fa-solid fa-scissors floating-item" style="top: 10%; left: 5%; font-size: 5rem;"></i>
+            <i class="fa-solid fa-gem floating-item" style="top: 20%; right: 10%; font-size: 3rem;"></i>
         </div>
         <div class="container" style="text-align: center;">
-            <span class="script-font" data-aos="fade-down">Грядёт нечто великое...</span>
-            <h1 class="big-title" data-aos="zoom-in" data-aos-delay="400">В ЭТУ <br> СУББОТУ</h1>
-            <p style="letter-spacing: 12px; margin-top: 20px; font-weight: 300; text-transform: uppercase;" data-aos="fade-up" data-aos-delay="800">Кабинет 19 | 9:00</p>
+            <span class="script-font" data-aos="fade-down">Приготовьтесь к шоку...</span>
+            <h1 class="main-title" data-aos="zoom-in" data-aos-delay="300">В ЭТУ <br> СУББОТУ.</h1>
+            <p style="letter-spacing: 8px; font-weight: 300; opacity: 0.6;" data-aos="fade-up">КАБИНЕТ 19 | 9:00</p>
         </div>
     </section>
 
-    <section style="background: var(--pink-dark);">
+    <section style="background: var(--pink-dark); color: white;">
         <div class="decor-layer">
-            <i class="fa-solid fa-razor floating-item" style="bottom: 10%; left: 20%; font-size: 6rem; color: white; opacity: 0.1;"></i>
-            <i class="fa-solid fa-crown floating-item" style="top: 10%; right: 10%; font-size: 4rem; color: white; opacity: 0.1;"></i>
+            <i class="fa-solid fa-razor floating-item" style="bottom: 10%; left: 15%; font-size: 6rem; color: white; opacity: 0.1;"></i>
+            <i class="fa-solid fa-crown floating-item" style="top: 15%; right: 5%; font-size: 4rem; color: white; opacity: 0.1;"></i>
         </div>
-        <div class="container" style="text-align: center; color: white;">
-            <h2 style="color: white; font-size: 4.5rem;" data-aos="fade-right">СУДЬБА ВОЛОС РЕШИТСЯ <br> ПРЯМО НА ГЛАЗАХ У ВСЕХ</h2>
-            <div style="width: 100px; height: 5px; background: var(--gold); margin: 40px auto;" data-aos="zoom-in"></div>
-            <p style="font-size: 1.6rem; font-weight: 300; opacity: 0.9;" data-aos="fade-left">Всё по обоюдному согласию. Никакой пощады.</p>
+        <div class="container" style="text-align: center;">
+            <h2 style="color: white; font-size: clamp(2rem, 6vw, 4rem);" data-aos="fade-right">СУДЬБА ВОЛОС РЕШИТСЯ <br> ПРЯМО НА ГЛАЗАХ У ВСЕХ</h2>
+            <div style="width: 80px; height: 4px; background: var(--gold); margin: 40px auto;" data-aos="zoom-in"></div>
+            <p style="font-size: 1.5rem; font-weight: 300; opacity: 0.8;" data-aos="fade-left">Школа пгт. Россоны | Исторический момент</p>
         </div>
     </section>
 
     <section>
         <div class="decor-layer">
             <i class="fa-solid fa-gem floating-item" style="top: 50%; left: 5%; font-size: 4rem;"></i>
-            <i class="fa-solid fa-scissors floating-item" style="top: 40%; right: 5%; font-size: 3.5rem; animation-delay: 1s;"></i>
+            <i class="fa-solid fa-scissors floating-item" style="top: 30%; right: 5%; font-size: 4rem;"></i>
         </div>
         <div class="container">
-            <div class="flex-row">
-                <div class="card-item" data-aos="fade-right">
-                    <div class="glass-card">
-                        <span class="script-font">THE NEFOR</span>
-                        <h3 style="font-size: 3rem; margin-bottom: 20px;">ШАШКИ</h3>
-                        <p>Главный нефор. Чёлка до Китая — В С Ё! Стрижка под 3мм в прямом эфире.</p>
-                    </div>
+            <h2 class="section-title" data-aos="fade-right">ГЛАВНЫЕ ГЕРОИ</h2>
+            <div class="flex-grid">
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <span class="script-font">THE NEFOR</span>
+                    <h3 style="font-size: 2.5rem; margin: 15px 0;">ШАШКИ</h3>
+                    <p>Тупой нефор. Прощается с чёлкой до Китая. Стрижка 3мм под троечку.</p>
                 </div>
-                <div class="card-item" data-aos="fade-left">
-                    <div class="glass-card">
-                        <span class="script-font">THE LEGEND</span>
-                        <h3 style="font-size: 3rem; margin-bottom: 20px;">ЧЕРСКИЙ</h3>
-                        <p>Главный усач. Вонючая растительность будет ликвидирована под ноль.</p>
-                    </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="400">
+                    <span class="script-font">THE CHERSKY</span>
+                    <h3 style="font-size: 2.5rem; margin: 15px 0;">ЧЕРСКИЙ</h3>
+                    <p>Главный усач. Многолетняя растительность будет уничтожена под ноль.</p>
                 </div>
             </div>
         </div>
@@ -213,25 +218,22 @@
 
     <section style="background: #fffafa;">
         <div class="decor-layer">
-            <i class="fa-solid fa-heart floating-item" style="top: 20%; left: 15%; font-size: 3rem;"></i>
-            <i class="fa-solid fa-droplet floating-item" style="bottom: 20%; right: 15%; font-size: 4rem; animation-delay: 2s;"></i>
+            <i class="fa-solid fa-heart floating-item" style="top: 20%; left: 10%; font-size: 3rem;"></i>
+            <i class="fa-solid fa-droplet floating-item" style="bottom: 20%; right: 10%; font-size: 4rem;"></i>
         </div>
         <div class="container" style="text-align: center;">
-            <h2 style="font-size: 3.5rem; margin-bottom: 50px;" data-aos="zoom-out">ИНТЕРАКТИВНЫЙ СТРИМ</h2>
-            <div class="flex-row">
-                <div class="card-item" data-aos="flip-left">
-                    <div class="glass-card" style="border-bottom: 10px solid var(--pink-main);">
-                        <span style="font-size: 4rem;">🌹</span>
-                        <h3 style="margin: 20px 0;">РОЗОЧКА</h3>
-                        <p>Минус один волос у Шашки</p>
-                    </div>
+            <h2 style="margin-bottom: 40px;" data-aos="zoom-out">УПРАВЛЯЙ БРИТВОЙ В ТИКТОКЕ</h2>
+            <p style="margin-bottom: 50px; opacity: 0.7;">Один подарок = минус одна волосинка в реальном времени</p>
+            <div class="flex-grid">
+                <div class="card" style="padding: 30px;" data-aos="flip-left">
+                    <span style="font-size: 4rem;">🌹</span>
+                    <h3 style="margin: 15px 0;">РОЗОЧКА</h3>
+                    <p>Бреет волос Шашке</p>
                 </div>
-                <div class="card-item" data-aos="flip-right">
-                    <div class="glass-card" style="border-bottom: 10px solid var(--pink-main);">
-                        <span style="font-size: 4rem;">😘</span>
-                        <h3 style="margin: 20px 0;">ПОЦЕЛУЙ</h3>
-                        <p>Минус одна усинка у Черского</p>
-                    </div>
+                <div class="card" style="padding: 30px;" data-aos="flip-right">
+                    <span style="font-size: 4rem;">😘</span>
+                    <h3 style="margin: 15px 0;">ПОЦЕЛУЙ</h3>
+                    <p>Сбривает усинку Черскому</p>
                 </div>
             </div>
         </div>
@@ -239,48 +241,45 @@
 
     <section>
         <div class="decor-layer">
-            <i class="fa-solid fa-scissors floating-item" style="bottom: 10%; right: 10%; font-size: 5rem;"></i>
-            <i class="fa-solid fa-gem floating-item" style="top: 10%; left: 10%; font-size: 3rem; animation-delay: 3s;"></i>
+            <i class="fa-solid fa-gem floating-item" style="bottom: 10%; left: 5%; font-size: 5rem;"></i>
+            <i class="fa-solid fa-scissors floating-item" style="top: 10%; right: 15%; font-size: 4rem;"></i>
         </div>
         <div class="container">
-            <div class="glass-card" style="padding: 60px;" data-aos="zoom-in-up">
-                <div class="flex-row" style="align-items: center;">
-                    <div class="card-item" style="text-align: left;">
-                        <h2 style="font-size: 3.5rem; margin-bottom: 20px;">БИЛЕТ В ЗАЛ</h2>
-                        <p style="font-size: 1.3rem; margin-bottom: 30px;">Количество мест ограничено. Забронируй сейчас!</p>
-                        <div class="price-badge">
-                            <span style="font-size: 4rem; font-weight: 900;">2</span>
-                            <span style="font-size: 1.1rem;">РУБЛЯ</span>
-                        </div>
-                    </div>
-                    <div class="card-item">
-                        <div style="background: white; padding: 20px; display: inline-block; border-radius: 30px; border: 5px solid var(--pink-main);">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://t.me/cherskyandshashkibot" alt="QR BOT">
-                        </div>
-                        <br>
-                        <a href="https://t.me/cherskyandshashkibot" class="btn-luxe">БОТ ДЛЯ ОПЛАТЫ</a>
-                        <p style="margin-top: 20px; font-weight: 900; color: var(--pink-main);">@cherskyandshashkibot</p>
-                    </div>
+            <div class="card" style="padding: 60px; display: flex; flex-direction: column; align-items: center;" data-aos="zoom-in-up">
+                <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px;">БИЛЕТ В ПЕРВЫЙ РЯД</h2>
+                <p style="opacity: 0.7;">Места в 19 кабинете строго ограничены!</p>
+                
+                <div class="price-badge">
+                    <span style="font-size: 4rem; font-weight: 900;">2</span>
+                    <span style="font-size: 1rem;">РУБЛЯ</span>
                 </div>
+
+                <div class="qr-wrapper">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://t.me/cherskyandshashkibot" alt="QR">
+                </div>
+                <br>
+                <a href="https://t.me/cherskyandshashkibot" class="btn-tg">БОТ ДЛЯ ОПЛАТЫ</a>
+                <p style="margin-top: 20px; font-weight: 700; color: var(--pink-main);">@cherskyandshashkibot</p>
             </div>
         </div>
     </section>
 
     <section style="background: #111; color: white;">
         <div class="container" style="text-align: center;">
-            <h2 style="color: white; font-size: 4.5rem; margin-bottom: 20px;" data-aos="fade-up">БУДЬ В КУРСЕ</h2>
+            <span class="script-font" style="color: var(--gold);">Ты готов к этому?</span>
+            <h2 style="color: white; font-size: clamp(2.5rem, 8vw, 5rem); margin: 30px 0;" data-aos="fade-up">БУДЬ С НАМИ</h2>
             <div style="margin-bottom: 40px;">
-                <p style="font-size: 1.5rem; color: var(--gold);">Telegram канал с новостями:</p>
-                <a href="https://t.me/cherskyandshashki" style="color: white; font-size: 2.5rem; text-decoration: none; font-weight: 900;">@cherskyandshashki</a>
+                <p style="opacity: 0.5; margin-bottom: 15px;">Telegram канал новостей:</p>
+                <a href="https://t.me/cherskyandshashki" style="color: white; font-size: 1.8rem; text-decoration: none; font-weight: 900; border-bottom: 2px solid var(--pink-main);">@cherskyandshashki</a>
             </div>
-            <p style="opacity: 0.4;">© 2026. THE GRAND SHAVE SHOW. BY SHASHKI & CHERSKY.</p>
+            <p style="opacity: 0.3; font-size: 0.8rem;">© 2026. THE GRAND SHAVE SPECTACULAR.</p>
         </div>
     </section>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            duration: 1200,
+            duration: 1000,
             once: false,
             mirror: true
         });
