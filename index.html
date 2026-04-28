@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1200">
     <title>ШОУ: ШАШКИ & ЧЕРСКИЙ</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Great+Vibes&family=Montserrat:wght@300;600;900&display=swap" rel="stylesheet">
@@ -31,6 +31,9 @@
             background-color: var(--pink-light);
             font-family: 'Montserrat', sans-serif;
             color: #333;
+            /* Фиксируем ширину как на ПК */
+            width: 1200px; 
+            margin: 0 auto;
             overflow-x: hidden;
         }
 
@@ -41,17 +44,18 @@
             justify-content: center;
             scroll-snap-align: start;
             position: relative;
-            padding: 40px;
+            padding: 60px;
             overflow: hidden;
+            width: 100%;
         }
 
         .container {
-            max-width: 1200px;
-            width: 100%;
+            width: 1100px;
             z-index: 10;
+            margin: 0 auto;
         }
 
-        /* ДЕКОР НА КАЖДОМ СЛАЙДЕ */
+        /* ДЕКОР */
         .decor-layer {
             position: absolute;
             top: 0;
@@ -78,7 +82,7 @@
         .script-font {
             font-family: 'Great Vibes', cursive;
             color: var(--pink-main);
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: 4rem;
             margin-bottom: -15px;
             display: block;
         }
@@ -90,9 +94,9 @@
             color: var(--pink-dark);
         }
 
-        .big-title { font-size: clamp(3.5rem, 10vw, 8.5rem); line-height: 0.9; font-weight: 900; }
+        .big-title { font-size: 8rem; line-height: 0.9; font-weight: 900; }
 
-        /* КАРТОЧКИ - ФИКС ГОРИЗОНТАЛИ */
+        /* КАРТОЧКИ - ЖЕСТКАЯ ГОРИЗОНТАЛЬ */
         .glass-card {
             background: var(--glass);
             backdrop-filter: blur(15px);
@@ -101,7 +105,7 @@
             border: 1px solid rgba(216, 27, 96, 0.1);
             box-shadow: 0 25px 50px rgba(136, 14, 79, 0.1);
             text-align: center;
-            min-width: 300px; /* Минимальная ширина чтобы не сплющило */
+            height: 100%;
         }
 
         .flex-row {
@@ -109,15 +113,12 @@
             gap: 40px;
             justify-content: center;
             align-items: stretch;
-            flex-wrap: nowrap; /* ЗАПРЕТ ПЕРЕНОСА */
-            overflow-x: auto; /* Позволяет свайпать контент если не влезает */
-            padding-bottom: 20px;
-            scrollbar-width: none; /* Скрываем полосу прокрутки для красоты */
+            flex-wrap: nowrap; /* Только в ряд! */
         }
-        
-        .flex-row::-webkit-scrollbar { display: none; }
 
-        .card-item { flex: 0 0 auto; width: 45%; min-width: 300px; }
+        .card-item { 
+            flex: 1;
+        }
 
         /* ЦЕННИК */
         .price-badge {
@@ -157,14 +158,6 @@
         }
 
         .btn-luxe:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(136, 14, 79, 0.5); }
-
-        @media (max-width: 768px) {
-            section { padding: 20px; }
-            .glass-card { padding: 25px; }
-            .card-item { width: 85%; } /* На мобилках карточки чуть шире для удобства */
-            .floating-item { display: block; opacity: 0.08; } /* Оставил на мобилках но чуть прозрачнее */
-            .big-title { font-size: 3.5rem; }
-        }
     </style>
 </head>
 <body>
@@ -187,7 +180,7 @@
             <i class="fa-solid fa-crown floating-item" style="top: 10%; right: 10%; font-size: 4rem; color: white; opacity: 0.1;"></i>
         </div>
         <div class="container" style="text-align: center; color: white;">
-            <h2 style="color: white; font-size: clamp(2rem, 5vw, 4.5rem);" data-aos="fade-right">СУДЬБА ВОЛОС РЕШИТСЯ <br> ПРЯМО НА ГЛАЗАХ У ВСЕХ</h2>
+            <h2 style="color: white; font-size: 4.5rem;" data-aos="fade-right">СУДЬБА ВОЛОС РЕШИТСЯ <br> ПРЯМО НА ГЛАЗАХ У ВСЕХ</h2>
             <div style="width: 100px; height: 5px; background: var(--gold); margin: 40px auto;" data-aos="zoom-in"></div>
             <p style="font-size: 1.6rem; font-weight: 300; opacity: 0.9;" data-aos="fade-left">Всё по обоюдному согласию. Никакой пощады.</p>
         </div>
@@ -211,7 +204,7 @@
                     <div class="glass-card">
                         <span class="script-font">THE LEGEND</span>
                         <h3 style="font-size: 3rem; margin-bottom: 20px;">ЧЕРСКИЙ</h3>
-                        <p>Главный усач. Растительность будет ликвидирована под ноль.</p>
+                        <p>Главный усач. Вонючая растительность будет ликвидирована под ноль.</p>
                     </div>
                 </div>
             </div>
@@ -251,16 +244,16 @@
         </div>
         <div class="container">
             <div class="glass-card" style="padding: 60px;" data-aos="zoom-in-up">
-                <div class="flex-row" style="flex-wrap: wrap; overflow: visible;">
-                    <div class="card-item" style="text-align: left; flex: 1;">
+                <div class="flex-row" style="align-items: center;">
+                    <div class="card-item" style="text-align: left;">
                         <h2 style="font-size: 3.5rem; margin-bottom: 20px;">БИЛЕТ В ЗАЛ</h2>
-                        <p style="font-size: 1.3rem; margin-bottom: 30px;">Места в 19 кабинете ограничены. Забронируй сейчас!</p>
+                        <p style="font-size: 1.3rem; margin-bottom: 30px;">Количество мест ограничено. Забронируй сейчас!</p>
                         <div class="price-badge">
                             <span style="font-size: 4rem; font-weight: 900;">2</span>
                             <span style="font-size: 1.1rem;">РУБЛЯ</span>
                         </div>
                     </div>
-                    <div class="card-item" style="flex: 1;">
+                    <div class="card-item">
                         <div style="background: white; padding: 20px; display: inline-block; border-radius: 30px; border: 5px solid var(--pink-main);">
                             <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://t.me/cherskyandshashkibot" alt="QR BOT">
                         </div>
